@@ -10,7 +10,7 @@ openam:
   service:
     name: am-service
   domain: .svc.cluster.local
-  openamInstance: http://am-service:80/openam
+  openamInstance: http://am-service:80
 
 configstore:
   baseDN: "o=userstore"
