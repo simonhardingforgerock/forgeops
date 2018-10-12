@@ -9,7 +9,7 @@ COPY amster.zip .
 RUN mkdir -p /opt/amster && unzip -q amster.zip -d /opt/amster 
 
 #COPY *.zip /opt/forgerock
-RUN apk add bash
+RUN apk add bash curl
 COPY *.sh /opt/amster/
 # put these in the path as well - for convenience.
 COPY *.sh /usr/local/bin/
