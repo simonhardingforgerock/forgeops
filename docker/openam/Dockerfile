@@ -2,17 +2,12 @@
 #
 # Copyright (c) 2016-2018 ForgeRock AS.
 #
-FROM forgerock/downloader 
-
-ARG VERSION="6.5.0-M4"
-RUN download -v $VERSION openam 
-RUN mkdir -p /var/tmp/openam && unzip -q /openam.war -d /var/tmp/openam
 
 FROM tomcat:8.5-alpine
-
+COPY  openam.war .
 RUN rm -fr "$CATALINA_HOME"/webapps/*
-
-COPY --from=0 /var/tmp/openam "$CATALINA_HOME"/webapps/ROOT
+RUN mkdir -p "$CATALINA_HOME"/webapps/ROOT
+RUN unzip -q openam.war -d "$CATALINA_HOME"/webapps/ROOT 
 
 #ENV CATALINA_OPTS -server -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
 # Option for setting the AM home directory:
