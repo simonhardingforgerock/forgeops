@@ -10,13 +10,12 @@ RUN mkdir -p /opt/amster && unzip -q amster.zip -d /opt/amster
 
 #COPY *.zip /opt/forgerock
 RUN apk add bash curl
+RUN chmod -R 775 /opt/amster/
 COPY *.sh /opt/amster/
 # put these in the path as well - for convenience.
 COPY *.sh /usr/local/bin/
 
 WORKDIR /opt/amster
-
-USER 11111
 
 ENTRYPOINT ["/opt/amster/docker-entrypoint.sh"]
 
